@@ -2,13 +2,16 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home.jsx"
 import Starred from "./pages/Starred.jsx";
+import MainLayout from "./components/MainLayout.jsx";
 
 function App() {
    return (
       <BrowserRouter>
          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/starred" element={<Starred />} />
+            <Route element={<MainLayout />}>
+               <Route path="/" element={<Home />} />
+               <Route path="/starred" element={<Starred />} />
+            </Route>
 
 
             <Route path="*" element={<div>Page Not Found</div>} />
