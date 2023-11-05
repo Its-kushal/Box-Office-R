@@ -5,8 +5,8 @@ import AppTitle from "./AppTitle.jsx";
 const MainLayout = () => {
     return (
         <div>
+            <AppTitle />
             <Navs />
-            <AppTitle title="" subtitle=""/>
             <Outlet />
         </div>
     );
