@@ -1,23 +1,34 @@
 // import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState } from 'react';
 
 const Home = () => {
+   const [searchStr, setSearchStr] = useState('');
 
-   const [ inputValue, setInputValue ] = useState('');
+   // console.log(searchStr);
 
-   console.log(inputValue);
+   const onSearchInputChange = ev => {
+      setSearchStr(ev.target.value);
+   };
 
-   const onInputChange = (ev) => {
-      setInputValue(ev.target.value);
+   const onSearch = async (ev) => {
+      // console.log(ev);
+      // https://api.tvmaze.com/search/shows?q=girls
+      ev.preventDefault();
+
+      const response = await fetch(`https://api.tvmaze.com/search/shows?q=${searchStr}`);
+      const body = await response.json();
+
+      console.log(body);
    }
 
-   return <div>
-      <div>{inputValue}</div>
-      <input type="text" onChange={onInputChange} value={inputValue}/>
-      <button type="button" onClick={() => {
-         setInputValue('');
-      }}>Update</button>
-   </div>;
+   return (
+      <div>
+         <form onSubmit={onSearch}>
+            <input type="text" onChange={onSearchInputChange} value={searchStr} />
+            <button type="submit">Search</button>
+         </form>
+      </div>
+   );
 };
 
 export default Home;
