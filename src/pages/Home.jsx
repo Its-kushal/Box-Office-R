@@ -1,39 +1,32 @@
 // import { Link } from "react-router-dom";
 import { useState } from 'react';
-import { searchForShows,searchForPeople } from './../apiFiles/tvmaze.js';
+import { searchForShows, searchForPeople } from './../apiFiles/tvmaze.js';
+import SearchForm from '../components/searchForm.jsx';
 
 const Home = () => {
-   const [searchStr, setSearchStr] = useState('');
+   
    const [apiData, setApiData] = useState(null);
    const [apiDataError, setApiDataError] = useState(null);
-   const [searchOption, setSearchOption] = useState('movies');
    
+
    // console.log(searchStr);
-   
-   const onSearchInputChange = ev => {
-      setSearchStr(ev.target.value);
-   };
-   
-   const onRadioChange = (ev) => {
-      setSearchOption(ev.target.value);
-   };
 
-   const onSearch = async ev => {
-
-      ev.preventDefault();
+   const onSearch = async ({ q, searchOption}) => {
 
       try {
          setApiDataError(null);
-         if(searchOption === 'movies'){
-            const result = await searchForShows(searchStr);
-            setApiData(result);
+
+         let result;
+
+         if (searchOption === 'movies') {
+            result = await searchForShows(q);
+         } else {
+            result = await searchForPeople(q);
          }
-         else{
-            const result = await searchForPeople(searchStr);
-            setApiData(result);   
-         }
+
+         setApiData(result);
       } catch (error) {
-         setApiData(error);
+         setApiDataError(error);
       }
    };
 
@@ -42,35 +35,22 @@ const Home = () => {
          return <div>Error Occured: {apiDataError.message}</div>;
       }
       if (apiData) {
-         return apiData[0].show ? apiData.map(data => (
-            <div key={data.show.id}>{data.show.name}</div>
-         )) : apiData.map(data => (
-            <div key={data.person.id}>{data.person.name}</div>
-         ));
+         return apiData[0].show
+            ? apiData.map(data => (
+                 <div key={data.show.id}>{data.show.name}</div>
+              ))
+            : apiData.map(data => (
+                 <div key={data.person.id}>{data.person.name}</div>
+              ));
       }
       return null;
    };
 
-
    return (
       <div>
-         <form onSubmit={onSearch}>
-            <input
-               type="text"
-               onChange={onSearchInputChange}
-               value={searchStr}
-            />
-
-            <label>
-               Movies
-               <input type="radio" value="movies" name="search-options" checked={searchOption === 'movies'} onChange={onRadioChange}/>
-            </label>
-            <label>
-               Actors
-               <input type="radio" value="actors" name="search-options" checked={searchOption === 'actors'} onChange={onRadioChange}/>
-            </label>
-            <button type="submit">Search</button>
-         </form>
+         <SearchForm
+            onSearch={onSearch}
+         />
          <div>{renderApiData()}</div>
       </div>
    );
