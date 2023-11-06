@@ -8,7 +8,7 @@ const LINKS = [
    {
       text: 'Starred',
       to: '/starred',
-   }
+   },
 ];
 
 const Navs = () => {

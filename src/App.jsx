@@ -1,8 +1,8 @@
 // import React from 'react';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home.jsx"
-import Starred from "./pages/Starred.jsx";
-import MainLayout from "./components/MainLayout.jsx";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home.jsx';
+import Starred from './pages/Starred.jsx';
+import MainLayout from './components/MainLayout.jsx';
 
 function App() {
    return (
@@ -12,7 +12,6 @@ function App() {
                <Route path="/" element={<Home />} />
                <Route path="/starred" element={<Starred />} />
             </Route>
-
 
             <Route path="*" element={<div>Page Not Found</div>} />
             {/* <Route path="/" element={<App />}>

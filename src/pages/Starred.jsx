@@ -1,9 +1,7 @@
 // import { Link } from "react-router-dom";
 
 const Starred = () => {
-    return (
-        <div>starred</div>
-    );
-}
+   return <div>starred</div>;
+};
 
 export default Starred;

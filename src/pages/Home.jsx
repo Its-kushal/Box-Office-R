@@ -28,8 +28,8 @@ const Home = () => {
    };
 
    const renderApiData = () => {
-      if(apiDataError){
-         return <div>Error Occured: {apiDataError.message}</div>
+      if (apiDataError) {
+         return <div>Error Occured: {apiDataError.message}</div>;
       }
       if (apiData) {
          return apiData.map(data => (
