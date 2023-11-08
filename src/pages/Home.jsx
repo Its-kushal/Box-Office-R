@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { searchForShows, searchForPeople } from './../apiFiles/tvmaze.js';
-import SearchForm from '../components/searchForm.jsx';
+import SearchForm from '../components/SearchForm.jsx';
 import ActorGrid from '../components/actors/ActorGrid.jsx';
 import ShowGrid from '../components/shows/ShowGrid.jsx';
 
