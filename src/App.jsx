@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Starred from './pages/Starred.jsx';
 import MainLayout from './components/MainLayout.jsx';
+import Show from './pages/Show.jsx';
 
 function App() {
    return (
@@ -12,6 +13,7 @@ function App() {
                <Route path="/" element={<Home />} />
                <Route path="/starred" element={<Starred />} />
             </Route>
+            <Route path="/show/:showId" element={<Show />}/>
 
             <Route path="*" element={<div>Page Not Found</div>} />
             {/* <Route path="/" element={<App />}>
