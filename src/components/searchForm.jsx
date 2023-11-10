@@ -1,16 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const SearchForm = ({onSearch}) => {
    const [searchStr, setSearchStr] = useState('');
    const [searchOption, setSearchOption] = useState('shows');
-
-   //1.Mounts 
-   //2.Rerender
-   //3.Unmount
-
-   useEffect(() => {
-      console.log("Componenet Mounts");
-   }, [])
 
    const onSearchInputChange = ev => {
       setSearchStr(ev.target.value);
