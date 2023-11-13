@@ -1,8 +1,8 @@
-const ShowMainData = (name, image, summary, rating, genres) => {
+const ShowMainData = ({ name, image, summary, rating, genres }) => {
    return (
       <div>
          <img
-            src={image ? image.origiinal : 'not-found-image.png'}
+            src={image ? image.original : 'not-found-image.png'}
             alt={name}
          />
          <div>
