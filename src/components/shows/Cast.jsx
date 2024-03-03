@@ -1,26 +1,27 @@
 import { styled } from 'styled-components';
+import NotFoundImgSrc from '../../lib/not-found-image.png';
 
 const Cast = ({ cast }) => {
    return (
       <CastList>
-            {cast.map(item => (
-               <div key={item.person.id} className='cast-item'>
-                  <div className='pic-wrapper'>
-                     <img
-                        src={
-                           item.person.image
-                              ? item.person.image.medium
-                              : 'not-found-image.png'
-                        }
-                        alt={item.person.name}
-                     />
-                  </div>
-                  <div className='actor'>
-                     {item.person.name} | {item.character.name}{' '}
-                     {item.voice && '| Voiceover'}
-                  </div>
+         {cast.map(item => (
+            <div key={item.person.id} className="cast-item">
+               <div className="pic-wrapper">
+                  <img
+                     src={
+                        item.person.image
+                           ? item.person.image.medium
+                           : NotFoundImgSrc
+                     }
+                     alt={item.person.name}
+                  />
                </div>
-            ))}
+               <div className="actor">
+                  {item.person.name} | {item.character.name}{' '}
+                  {item.voice && '| Voiceover'}
+               </div>
+            </div>
+         ))}
       </CastList>
    );
 };
